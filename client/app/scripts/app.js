@@ -25,7 +25,7 @@ angular
       })
       .when('/list', {
         templateUrl: 'views/list.html',
-        controller: 'SampleCtrl'
+        controller: 'MovieController'
       })
       .when('/movies', {
         templateUrl: 'views/movies.html',
@@ -46,6 +46,10 @@ angular
       .when('/movie/:id/delete', {
         templateUrl: 'views/movie-delete.html',
         controller: 'MovieDeleteCtrl'
+      })
+        .when('/movie/main-info', {
+          templateUrl: '../../partials/main-info.html',
+          controller: 'MovieController'
       })
       .otherwise({
         redirectTo: '/'
@@ -74,4 +78,5 @@ angular
     return function(url) {
       return $sce.trustAsResourceUrl(url);
     };
+    
   });

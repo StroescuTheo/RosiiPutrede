@@ -1,25 +1,40 @@
-<a class="btn btn-primary" href="/#!/create/movie"><span class="glyphicon glyphicon-plus"></span> Create Movie</a>
-<br>
-<table class="table table-striped">
-  <thead>
-    <tr><th>Title</th>
-    <th>URL</th>
-    <th>Operations</th>
-  </tr></thead>
-  <tbody>
-    <tr ng-repeat="movie in listafilme">
-      <td><a ng-href="/#!/movie/{{ movie._id }}">{{ movie.title }}</a></td>
-      <td>{{ movie.url }}</td>
-      <td>
-        <div class="button-group">
-          <a ng-href="/#!/movie/{{ movie._id }}/edit" class="btn btn-default">
-            <span class="glyphicon glyphicon-edit"></span>
-          </a>
-          <a ng-href="/#!/movie/{{ movie._id }}/delete" class="btn btn-danger">
-            <span class="glyphicon glyphicon-remove-circle"></span>
-          </a>
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="MovieController">
+  <head>
+    <title ng-bind="'Fastr - ' + details.Title"></title>
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <div class="container-fluid outerdiv">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#"><b>Fastr</b> <span class="span-style">Movie Browser</span></a>
+          </div>
         </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </nav>
+
+      <noscript>
+        <div class="nojs">Javascript is either disabled or not supported in your browser. Please enable it or use a Javascript enabled browser.</div>
+      </noscript>
+
+      <div class="animated zoomInRight">
+        <div class="input-group search-bar">
+          <input type="text" ng-model="search" ng-model-options="{ debounce: 800 }" onclick="select()" class="form-control" placeholder="Enter full movie name" autofocus />
+          <span class="input-group-addon bar-style"><i class="glyphicon glyphicon-search"></i></span>
+        </div>
+
+        <div id="main-info" ng-include="'partials/main-info.html'" class="col-md-8"></div>
+
+        <div id="related-results" ng-include="'partials/related-results.html'" class="col-md-4 animated bounce related-results"></div>
+      </div>
+    </div>
+
+    <script src="js/angular.min.js"></script> 
+     </body>
+</html>
